@@ -73,12 +73,18 @@ int main( int nargs, char** argv ) {
         auto const& larlite_storage = dataco.get_larlite_io();
         auto const& track_v    = dataco.get_larlite_data(larlite::data::kTrack,"pandoraNu");
         auto const& gaushit_v  = dataco.get_larlite_data(larlite::data::kHit,"gaushit");
-        auto const& hit_v      = dataco.get_larlite_data(larlite::data::kHit, "pandoraCosmicKHitRemoval");
+        /*auto const& hit_v      = dataco.get_larlite_data(larlite::data::kHit, "pandoraCosmicKHitRemoval");
         auto const& ass_info   = dataco.get_larlite_data(larlite::data::kAssociation,"pandoraNu");
 
         auto const& ass_info_v = ass_info->association(ass_info.find_one_assid(larlite::data::kTrack,larlite::data::kHit));
 
-        for(size_t track_index = 0;track_index < ass_info_v.size();track_index++){
+        auto track_v   = dataco.get_larlite_data<larlite::event_track>("pandoraNu");
+        auto gaushit_v = dataco.get_larlite_data<larlite::event_hit>("gaushit");*/
+
+        larlite::event_hit* hit_v = nullptr; // B
+        auto const& ass_info = larlite_storage.find_one_ass(track_v->id(),  hit_v, track_v->id().second);
+
+        /*for(size_t track_index = 0;track_index < ass_info_v.size();track_index++){
             larlite::track one_track = track_v[track_index];
             std::vector<int> hit_index_v = ass_info_v[track_index];
             std::vector<int> track_info = {Run, SubRun,Event, one_track.ID()};
@@ -90,7 +96,7 @@ int main( int nargs, char** argv ) {
                 // here, get the vector if selected hits ()
             }
 
-        }
+        }*/
 
     }
 
