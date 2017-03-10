@@ -3,7 +3,7 @@
 PACKAGE_NAME = 3DTrackReco
 
 # ADD BINDARY NAMES HERE
-# PROGRAMS = 
+PROGRAMS = run_3DTrackReco
 
 PROGRAM_SOURCE = $(addsuffix .cxx, $(PROGRAMS))
 SOURCES = $(filter-out $(PROGRAM_SOURCE), $(wildcard *.cxx))
@@ -49,9 +49,7 @@ LDFLAGS += $(shell root-config --libs) -lPhysics -lMatrix -g
 include $(LARLITECV_BASEDIR)/Makefile/GNUmakefile.CORE
 
 pkg_build:
-
 pkg_clean:
-	@rm $(PROGRAMS)
 
 # Add your program below with a space after the previous one.
 # This makefile compiles all binaries specified below.
